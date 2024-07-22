@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from "@/components/ui/button";
 import { InputOTP, InputOTPGroup, InputOTPSeparator, InputOTPSlot } from "@/components/ui/input-otp";
 
@@ -17,7 +17,7 @@ const OTPForm: React.FC<OTPFormProps> = ({ email }) => {
         setOtp(value);
     };
 
-    const handleVerifyOTP = async () => {
+    const handleVerifyOTP = useCallback(async () => {
         setIsLoading(true);
         try {
             const res = await fetch('/api/auth/verify-otp', {
@@ -46,7 +46,7 @@ const OTPForm: React.FC<OTPFormProps> = ({ email }) => {
             setMessageType("error");
             setIsLoading(false);
         }
-    };
+    }, [email, otp]);
 
     const handleResendOTP = async () => {
         setIsResending(true);
@@ -81,7 +81,7 @@ const OTPForm: React.FC<OTPFormProps> = ({ email }) => {
         if (otp.length === 6) {
             handleVerifyOTP();
         }
-    }, [otp]);
+    }, [otp, handleVerifyOTP]);
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 px-5">

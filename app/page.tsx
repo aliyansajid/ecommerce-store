@@ -132,7 +132,7 @@ export function LoginForm() {
                         </form>
                     </Form>
                     <p className="text-sm text-primary font-jakartaSans text-center mt-5">
-                        <span>Don't have an account?</span>
+                        <span>Don&apos;t have an account?</span>
                         <Link href="/register">
                             <span className="text-link font-jakartaSans font-semibold ml-1">
                                 Sign Up
